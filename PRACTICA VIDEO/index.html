@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <nav id="navbar">
+        <ul class="nav">
+            <li><a href="#">Nosaltres</a></li>
+            <li><a href="#">Carta</a></li>
+            <li><a href="#">Galeria</a></li>
+        </ul>
+    </nav>
+
+
+    <header>
+        <div class="titol">
+            <h1 class="titol">Restaurant els coberts</h1>
+            <p class="titol">Institut de les TIC de Barcelona</p>
+        </div>
+    </header>
+
+
+    <main>
+        <script>
+            $(document).ready(function() {
+                $(".titolNosaltres").click(function() {
+                    $(".grup_nosaltres").toggle();
+                });
+            });
+        </script>
+
+        <section id="nosaltres" >
+            <div class="grup_nosaltres">
+                <h1>Video</h1>
+                <div class="videoContainer">
+                    <video id="MyVideo" width="100%">
+                        <source src="./img/FrankVideo.mp4" type="video/mp4" controls>
+                    </video>
+                    <button id="play-pause" style="background: url('./icons/play_circle.png') no-repeat;"></button>
+                    <button id="mute-unmute" style="background: url('./icons/volume_up.png') no-repeat; "></button>
+                </div> 
+                <script>
+                    var video = document.getElementById("MyVideo");
+                    var playButton = document.getElementById("play-pause");
+                    var muteButton = document.getElementById("mute-unmute");
+                
+                    playButton.addEventListener("click", function() {
+                        if (video.paused) {
+                            video.play();
+                            playButton.style.background = "url('./icons/pause_circle.png') no-repeat";
+                        } else {
+                            video.pause();
+                            playButton.style.background = "url('./icons/play_circle.png') no-repeat";
+                        }
+                    });
+                
+                    muteButton.addEventListener("click", function() {
+                        if (video.muted) {
+                            video.muted = false;
+                            muteButton.style.background = "url('./icons/volume_up.png') no-repeat";
+                        } else {
+                            video.muted = true;
+                            muteButton.style.background = "url('./icons/volume_off.png') no-repeat";
+                        }
+                    });
+                    window.addEventListener('scroll', function() {
+                        var video = document.getElementById('MyVideo');
+                        var rect = video.getBoundingClientRect();
+                    
+                        if(rect.top <= window.innerHeight && rect.bottom >= 0) {
+                            video.muted = true; // Asegúrate de que el video esté silenciado
+                            video.play();
+                        } else {
+                            video.pause();
+                        }
+                    });
+                    window.addEventListener('scroll', function() {
+                        var video = document.getElementById('MyVideo');
+                        var rect = video.getBoundingClientRect();
+                        var navbar = document.getElementById("navbar");
+                    
+                        if(rect.top <= window.innerHeight && rect.bottom >= 0) {
+                            video.muted = true; // Asegúrate de que el video esté silenciado
+                            video.play();
+                        } else {
+                            video.pause();
+                        }
+                    
+                        if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+                            navbar.style.padding = "30px 10px";
+                            navbar.style.fontSize = "25px";
+                        } else {
+                            navbar.style.padding = "80px 10px";
+                            navbar.style.fontSize = "35px";
+                        }
+                    });
+                    window.addEventListener('scroll', function() {
+                        var icon = document.getElementById('myIcon');
+                        var scrollPosition = window.pageYOffset;
+                    
+                        icon.style.transform = "rotate(" + scrollPosition + "deg)";
+                    
+                        if (scrollPosition > 80) {
+                            icon.style.fontSize = "35px";
+                        } else {
+                            icon.style.fontSize = "25px";
+                        }
+                    });
+                </script>
+            </div>
+            <h2 class="titolNosaltres">Sobre nosaltres</h2>
+            <div class="grup_nosaltres">
+                <div class="esq">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus reiciendis, excepturi
+                    aspernatur tenetur est aut vel voluptate vitae accusantium itaque harum incidunt quidem dicta ipsam
+                    aperiam alias. Repudiandae, minima debitis! Nostrum omnis nulla, tenetur voluptatibus ullam beatae dolor? </p>
+            </div>
+            <div class="grup_nosaltres">
+                <div class="dreta"><video id="MyVideo" width="100%" controls><source src="./img/FrankVideo.webm" type="video/mp4"></div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus reiciendis, excepturi
+                    aspernatur tenetur est aut vel voluptate vitae accusantium itaque harum incidunt quidem dicta ipsam
+                    aperiam alias. Repudiandae, minima debitis! Nostrum omnis nulla, tenetur voluptatibus ullam beatae dolor? </p>
+            </div>
+        </section>
+
+        
+        <section id="carta">
+            <i id="myIcon" class="material-icons">face</i>
+            
+            <h2>Carta</h2>
+            <div class="menus">
+                <div class="menuh">
+                    <div>Menú</div>
+                </div>
+                <div class="menuv">
+                    <div>Menú 1</div>
+                </div>
+                <div class="text-carta">
+                    <h3>Contingut</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus reiciendis, excepturi
+                        aspernatur tenetur est aut vel voluptate vitae accusantium itaque harum incidunt quidem dicta ipsam
+                        aperiam alias. Repudiandae, minima debitis!</p>
+                </div>
+                <div class="foto-carta foto1">
+                    <img src="./img/x1.jpg">
+                    <div class="text-foto">Amanida</div>
+                </div>
+                <div class="foto-carta foto2"><img src="./img/x2.jpg">
+                    <div class="text-foto">Carns</div>
+                </div>
+            </div>
+            <div class="menus">
+                <div class="menuv">
+                    <div>Menú 1</div>
+                </div>
+                <div class="text-carta">
+                    <h3>Contingut</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus reiciendis, excepturi
+                        aspernatur tenetur est aut vel voluptate vitae accusantium itaque harum incidunt quidem dicta ipsam
+                        aperiam alias. Repudiandae, minima debitis!</p>
+                </div>
+                <div class="foto-carta foto1"><img src="./img/x3.jpg">
+                    <div class="text-foto">Arròs</div>
+                </div>
+                <div class="foto-carta foto2"><img src="./img/x4.jpg">
+                    <div class="text-foto">Peix</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="galeria">
+            <h2>Galeria</h2>
+            <ul class="galeria">
+                <li>
+                    <img src="./img/g1.jpg" alt="" />
+                </li>
+                <li>
+                    <img src="./img/g2.jpg" alt="" />
+                </li>
+                <li>
+                    <img src="./img/g3.jpg" alt="" />
+                </li>
+                <li>
+                    <img src="./img/g4.jpg" alt="" />
+                </li>
+                <li>
+                    <img src="./img/g5.jpg" alt="" />
+                </li>
+                <li>
+                    <img src="./img/g6.jpg" alt="" />
+                </li>
+                <li>
+                    <img src="./img/g7.jpg" alt="" />
+                </li>
+                <li>
+                    <img src="./img/g8.jpg" alt="" />
+                </li>
+            </ul>
+        </section>
+
+        <footer>
+            <div class="peu1">
+                <img height="100%" src="./img/mail.png" alt="" />mail@trescoberts.cat
+                <img height="100%" src="./img/tel.png" alt="" />123 123 123
+            </div>
+            <div class="peu2">Restaurant Els coberts</div>
+        </footer>
+    </main>
+</body>
+
+</html>
