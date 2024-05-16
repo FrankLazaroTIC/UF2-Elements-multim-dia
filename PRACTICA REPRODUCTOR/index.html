@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+    <title>Reproductor Frank</title>
+</head>
+<body style="background-color: gray;">
+    <div id="player">
+        <img id="cover" src="./src/Cover 1.jpg" alt="Cover Image">
+        <div id="song-info">
+            <h2 id="title">Title</h2>
+            <h3 id="artist">Artist</h3>
+            <h3 id="timer">0:00</h3>
+        </div>
+        <div id="controls">
+            <button onclick="prevSong()"><i id="prev" class="material-icons"><span class="material-symbols-outlined">skip_previous</span></i></button>
+            <button  class="play-button" onclick="togglePlay()"><i id="play" class="material-icons"><span class="material-symbols-outlined">play_arrow</span></i></button>
+            <button onclick="nextSong()"><i id="next" class="material-icons"><span class="material-symbols-outlined">skip_next</span></i></button>
+        </div>
+        <div style="display: flex; align-items: center;">
+            <span class="material-icons">volume_mute</span>
+            <input id="volume" type="range" min="0" max="1" step="0.1" value="0.5" style="flex-grow: 1;">
+            <span class="material-icons">volume_up</span>
+        </div>
+        <script>
+            let songs = [];
+
+            fetch('./songs.json')
+                .then(response => response.json())
+                .then(data => {
+                    songs = data;
+                    loadSong(songs[songIndex]);
+                })
+                .catch(error => console.error('Error:', error));
+
+            let songIndex = 0;
+        
+            const cover = document.getElementById('cover');
+            const title = document.getElementById('title');
+            const artist = document.getElementById('artist');
+            const audio = new Audio();
+            const prevBtn = document.getElementById('prev');
+            const playBtn = document.getElementById('play');
+            const nextBtn = document.getElementById('next');
+            const volumeSlider = document.getElementById('volume');
+            const timer = document.getElementById('timer');
+        
+            prevBtn.addEventListener('click', prevSong);
+            playBtn.addEventListener('click', togglePlay);
+            nextBtn.addEventListener('click', nextSong);
+            volumeSlider.addEventListener('input', changeVolume);
+            audio.addEventListener('timeupdate', updateTimer);
+        
+            loadSong(songs[songIndex]);
+        
+            function loadSong(song) {
+                cover.src = song.img;
+                title.textContent = song.name;
+                artist.textContent = song.artist;
+                audio.src = song.path;
+            }
+        
+            function prevSong() {
+                songIndex--;
+                if (songIndex < 0) songIndex = songs.length - 1;
+                loadSong(songs[songIndex]);
+                audio.play();
+            }
+        
+            function togglePlay() {
+                if (audio.paused) {
+                    audio.play();
+                } else {
+                    audio.pause();
+                }
+            }
+        
+            function nextSong() {
+                songIndex++;
+                if (songIndex > songs.length - 1) songIndex = 0;
+                loadSong(songs[songIndex]);
+                audio.play();
+            }
+        
+            function changeVolume() {
+                audio.volume = volumeSlider.value;
+            }
+        
+            function updateTimer() {
+                const minutes = Math.floor(audio.currentTime / 60);
+                const seconds = Math.floor(audio.currentTime % 60);
+                timer.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            }
+        </script>
+    </div>
+</body>
+</html>

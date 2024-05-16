@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Demon Slayer",
+        "artist": "Demon King",
+        "path": "./music/Song1.mp3",
+        "img":"./src/Cover 1.jpg"
+    },
+    {
+        "name": "Hajime No Ippo",
+        "artist": "Ippo Makunouchi",
+        "path": "./music/Song2.mp3",
+        "img":"./src/Cover 2.jpg"
+    },
+    {
+        "name": "Spidey",
+        "artist": "Peter Parker",
+        "path": "./music/Song3.mp3",
+        "img":"./src/Cover 3.jpg"
+    }
+]
