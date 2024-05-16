@@ -47,3 +47,60 @@ button:hover img, button:active img {
 #title, #artist, #timer {
     text-align: center; 
 }
+
+#volume {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    background: black;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+#volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: repeating-linear-gradient(
+        45deg,
+        #000,
+        #000 12px,
+        #fff 10px,
+        #fff 22px
+    );
+    cursor: pointer;
+    border-radius: 50%;  /* Hace que el thumb sea redondo */
+    margin-top: -5px;  /* Ajusta la posición vertical del thumb */
+}
+
+#volume::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: repeating-linear-gradient(
+        45deg,
+        #000,
+        #000 5px,
+        #fff 5px,
+        #fff 2px
+    );
+    cursor: pointer;
+    border-radius: 50%;  /* Hace que el thumb sea redondo */
+    margin-top: -5px;  /* Ajusta la posición vertical del thumb */
+}
+
+#volume::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 15px;
+    cursor: pointer;
+    background: black;
+}
+
+#volume::-moz-range-track {
+    width: 100%;
+    height: 15px;
+    cursor: pointer;
+    background: black;
+}
